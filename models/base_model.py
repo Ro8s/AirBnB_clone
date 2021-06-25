@@ -13,7 +13,8 @@ class BaseModel():
         ''' init method '''
         if not kwargs:
             self.id = str(uuid.uuid4())
-            self.created_at = datetime.now()
+            self.created_at = self.updated_at = datetime.now()
+            storage.new(self)
         else:
             for key in kwargs:
                 if key is "created_at" or key is "updated_at":
@@ -21,7 +22,6 @@ class BaseModel():
                     setattr(self, key, a)
                 elif key is not "__class__":
                     setattr(self, key, kwargs[key])
-                    self.updated_at = datetime.now()
 
     ''' __str__ '''
 
@@ -41,7 +41,8 @@ class BaseModel():
 
     def to_dict(self):
         ''' to_dict '''
-        self.__dict__["__class__"] = self.__class__.__name__
-        self.__dict__["created_at"] = self.created_at.isoformat()
-        self.__dict__["updated_at"] = self.updated_at.isoformat()
-        return self.__dict__
+        d = self.__dict__.copy()
+        d["__class__"] = self.__class__.__name__
+        d["created_at"] = self.created_at.isoformat()
+        d["updated_at"] = self.updated_at.isoformat()
+        return d
