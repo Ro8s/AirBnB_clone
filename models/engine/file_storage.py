@@ -13,7 +13,7 @@ class FileStorage():
     ''' all '''
     def all(self):
         ''' all '''
-        return self.__objects
+        return FileStorage.__objects
 
     ''' new '''
 
@@ -32,7 +32,7 @@ class FileStorage():
         aux_dict = {}
         for key in FileStorage.__objects:
             aux_dict[key] = FileStorage.__objects[key].to_dict()
-        with open(FileStorage.__file_path, "w+") as f:
+        with open(FileStorage.__file_path, "w") as f:
             json.dump(aux_dict, f)
 
     ''' reload '''
@@ -43,6 +43,6 @@ class FileStorage():
             with open(FileStorage.__file_path, "r") as f:
                 a = json.load(f)
             for key in a:
-                FileStorage.__objects[key] = a[key]
+                
         except:
             pass
