@@ -43,7 +43,7 @@ class FileStorage():
             with open(FileStorage.__file_path, "r") as f:
                 a = json.load(f)
             for key in a:
-                new = BaseModel(**a[key])
-                FileStorage.__objects[key] = new
+                obj = BaseModel(**a[key])
+                self.new(obj)
         except:
             pass
