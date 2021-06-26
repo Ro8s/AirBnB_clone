@@ -2,7 +2,7 @@
 ''' FileStorage Module'''
 
 import json
-import os
+from models.base_model import BaseModel
 
 
 class FileStorage():
@@ -43,6 +43,8 @@ class FileStorage():
             with open(FileStorage.__file_path, "r") as f:
                 a = json.load(f)
             for key in a:
-                
-        except:
+                print("reloading..")
+                new = BaseModel(**a[key])
+                FileStorage.__objects[key] = new
+        except FileNotFoundError:
             pass
