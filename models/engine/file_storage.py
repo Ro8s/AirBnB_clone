@@ -24,7 +24,6 @@ class FileStorage():
         key = clac + "." + i
         FileStorage.__objects[key] = obj
 
-
     ''' save '''
 
     def save(self):
@@ -42,8 +41,8 @@ class FileStorage():
         try:
             with open(FileStorage.__file_path, "r") as f:
                 a = json.load(f)
-            for key in a:
-                obj = BaseModel(**a[key])
+            for value in a.values():
+                obj = BaseModel(**value)
                 self.new(obj)
         except:
             pass
