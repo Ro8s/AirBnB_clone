@@ -79,7 +79,7 @@ class HBNBCommand(cmd.Cmd):
             else:
                 aux = s[0] + '.' + s[1]
                 if str(aux) in models.storage.all():
-                    del models.storage.all()[aux]
+                    models.storage.all().pop(aux)
                 else:
                     print("** no instance found **")
 
@@ -93,7 +93,13 @@ class HBNBCommand(cmd.Cmd):
             for values in models.storage.all().values():
                 aux.append(values.__str__())
         elif len(s) == 1:
-            
+            if s[0] not in classes:
+                print("** class doesn't exist **")
+                return
+            for key, values in models.storage.all().items():
+                temp = key.split('.')
+                if temp[0] == s[0]:
+                    aux.append(values.__str__())
         print(aux)
 
     ''' Empty line '''
