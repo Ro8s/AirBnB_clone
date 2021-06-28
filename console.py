@@ -2,18 +2,18 @@
 ''' The console '''
 
 import cmd
+import models
 from models.base_model import BaseModel
-from models.engine.file_storage import FileStorage
 from shlex import split
+
+
+classes = {"BaseModel": BaseModel}
 
 
 class HBNBCommand(cmd.Cmd):
     ''' El console '''
 
     prompt = '(hbnb) '
-    storage = FileStorage()
-    objects = storage.all()
-    classes = {"BaseModel": BaseModel}
 
     ''' quit xd '''
     
@@ -48,16 +48,19 @@ class HBNBCommand(cmd.Cmd):
         if len(s) == 0:
             print("** class name missing **")
         elif len(s) == 1:
-            if s[0] in HBNBCommand.classes:
+            if s[0] in classes:
                 print("** instance id missing **")
             else:
                 print("** class doesn't exist **")
         else:
-            aux = s[0] + '.' + s[1]
-            if str(aux) in HBNBCommand.objects:
-                print(HBNBCommand.objects[aux])
+            if s[0] not in classes: 
+                print("** class doesn't exist **")
             else:
-                print("** no instance found **")
+                aux = s[0] + '.' + s[1]
+                if str(aux) in models.storage.all():
+                    print(models.storage.all()[aux])
+                else:
+                    print("** no instance found **")
 
     ''' destroy '''
     def do_destroy(self, line):
@@ -66,15 +69,33 @@ class HBNBCommand(cmd.Cmd):
         if len(s) == 0:
             print("** class name missing **")
         elif len(s) == 1:
-            if s[0] in HBNBCommand.classes:
+            if s[0] in classes:
                 print("** instance id missing **")
             else:
                 print("** class doesn't exist **")
         else:
-            aux = s[0] + '.' + s[1]
-            if str(aux) in HBNBCommand.objects:
-                del HBNBCommand.objects[aux]
-                
+            if s[0] not in classes:
+                print("** class doesn't exist **")
+            else:
+                aux = s[0] + '.' + s[1]
+                if str(aux) in models.storage.all():
+                    del models.storage.all()[aux]
+                else:
+                    print("** no instance found **")
+
+    ''' show all objects '''
+
+    def do_all(self, line):
+        ''' Prints all string representation of all instances based or not on the class name '''
+        s = split(line)
+        aux = []
+        if len(s) == 0:
+            for values in models.storage.all().values():
+                aux.append(values.__str__())
+        elif len(s) == 1:
+            
+        print(aux)
+
     ''' Empty line '''
 
     def emptyline(self):
