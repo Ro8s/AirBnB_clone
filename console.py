@@ -102,6 +102,63 @@ class HBNBCommand(cmd.Cmd):
                     aux.append(values.__str__())
         print(aux)
 
+    ''' Update '''
+    def do_update(self, line):
+        ''' Updates an instance based on the class name and id by adding or updating attribute '''
+        s = split(line)
+        if len(s) == 0:
+            print("** class name missing **")
+            return
+        elif len(s) == 1:
+            if s[0] not in classes:
+                print("** class doesn't exist **")
+                return
+            else:
+                print("** instance id missing **")
+                return
+        bol = False
+        for key in models.storage.all():
+            temp = key.split('.')
+            if temp[1] == s[1]:
+                bol = True
+                break
+        if bol == False:
+            print("** no instance found **")
+            return
+        elif len(s) < 3:
+            print("** attribute name missing **")
+        elif len(s) < 4:
+            print("** value missing **")            
+        else:
+            if s[0] not in classes:
+                print("** class doesn't exist **")
+                return
+            bul = False
+            for key in models.storage.all():
+                temp = key.split('.')
+                if temp[1] == s[1]:
+                    bol = True
+                    break
+            if bol == False:
+                print("** no instance found **")
+                return
+            else:
+                aux = s[0] + "." + s[1]
+                setattr(models.storage.all()[aux], s[2], s[3])
+
+        '''
+        if len(s) == 0:
+            print("** class name missing **")
+        elif s[0] not in classes:
+            print("** class doesn't exist **")
+        elif len(s) == 1:
+            print("** instance id missing **")
+        elif len(s) == 2 and s[2]:
+            for key in models.storage.all():
+                temp = key.split(".")
+                if temp[1]
+        '''
+
     ''' Empty line '''
 
     def emptyline(self):
