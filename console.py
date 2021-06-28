@@ -3,13 +3,18 @@
 
 import cmd
 from models.base_model import BaseModel
-from sys import argv
+from models.engine.file_storage import FileStorage
 from shlex import split
+
 
 class HBNBCommand(cmd.Cmd):
     ''' El console '''
 
     prompt = '(hbnb) '
+    storage = FileStorage()
+    objects = storage.all()
+    classes = {"BaseModel": BaseModel}
+
     ''' quit xd '''
     
     def do_quit(self, line):
@@ -39,7 +44,37 @@ class HBNBCommand(cmd.Cmd):
     ''' Show '''
     def do_show(self, line):
         ''' Prints the string representation of an instance based on the class name and id '''
-        
+        s = split(line)
+        if len(s) == 0:
+            print("** class name missing **")
+        elif len(s) == 1:
+            if s[0] in HBNBCommand.classes:
+                print("** instance id missing **")
+            else:
+                print("** class doesn't exist **")
+        else:
+            aux = s[0] + '.' + s[1]
+            if str(aux) in HBNBCommand.objects:
+                print(HBNBCommand.objects[aux])
+            else:
+                print("** no instance found **")
+
+    ''' destroy '''
+    def do_destroy(self, line):
+        '''' Deletes an instance based on the class name and id '''
+        s = split(line)
+        if len(s) == 0:
+            print("** class name missing **")
+        elif len(s) == 1:
+            if s[0] in HBNBCommand.classes:
+                print("** instance id missing **")
+            else:
+                print("** class doesn't exist **")
+        else:
+            aux = s[0] + '.' + s[1]
+            if str(aux) in HBNBCommand.objects:
+                del HBNBCommand.objects[aux]
+                
     ''' Empty line '''
 
     def emptyline(self):
