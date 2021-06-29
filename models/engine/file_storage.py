@@ -45,7 +45,7 @@ class FileStorage():
         try:
             with open(FileStorage.__file_path, "r") as f:
                 a = json.load(f)
-            for key, value in a.values():
+            for key, value in a.items():
                 aux = key.split('.')
                 obj = classes[aux[0]](**value)
                 self.new(obj)
