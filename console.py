@@ -68,6 +68,7 @@ class HBNBCommand(cmd.Cmd):
 
     def do_EOF(self, line):
         ''' exit console '''
+        print("")
         return True
 
     ''' Create '''
