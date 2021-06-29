@@ -198,7 +198,7 @@ class HBNBCommand(cmd.Cmd):
     def default(self, line):
         '''default method overriden'''
         s = line.split('.')
-        if s[0] not in classes:
+        if s[0] not in classes or len(s) >= 3:
             print("*** unkown syntax: {}". format(s[0]))
             return
         if s[1] == 'all()':
@@ -209,6 +209,7 @@ class HBNBCommand(cmd.Cmd):
                     aux.append(values.__str__())
             print(aux)
             return
+        
 
     ''' Empty line '''
 
