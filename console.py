@@ -24,6 +24,29 @@ def id_validator(id):
     return False
 
 
+''' function to check if string represents float '''
+
+
+def is_float(s):
+    '''true if float, otherwise false'''
+    try:
+        float(s)
+        return True and '.' in s
+    except:
+        return False
+
+
+''' function to check if string represents int '''
+
+
+def is_int(s):
+    try:
+        int(s)
+        return True
+    except:
+        return False
+
+
 class HBNBCommand(cmd.Cmd):
     ''' El console '''
 
@@ -155,7 +178,12 @@ class HBNBCommand(cmd.Cmd):
                 return
             elif s[0] in classes and id_validator(s[1]):
                 aux = s[0] + "." + s[1]
-                setattr(models.storage.all()[aux], s[2], s[3])
+                cpy = s[3]
+                if is_float(s[3]):
+                    cpy = float(s[3])
+                if is_int(s[3]):
+                    cpy = int(s[3])
+                setattr(models.storage.all()[aux], s[2], cpy)
                 models.storage.save()
 
     ''' Empty line '''
