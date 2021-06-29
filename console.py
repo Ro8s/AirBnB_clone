@@ -5,9 +5,10 @@ import cmd
 import models
 from models.base_model import BaseModel
 from shlex import split
+from models.user import User
 
 
-classes = {"BaseModel": BaseModel}
+classes = {"BaseModel": BaseModel, "User": User}
 
 
 ''' global function to validate objects ids '''
@@ -71,10 +72,10 @@ class HBNBCommand(cmd.Cmd):
         s = split(line)
         if len(s) < 1:
             print("** class name missing **")
-        elif s[0] != "BaseModel":
+        elif s[0] not in classes:
             print("** class doesn't exist **")
         else:
-            insta = BaseModel()
+            insta = classes[s[0]]()
             insta.save()
             print(insta.id)
 
