@@ -198,7 +198,7 @@ class HBNBCommand(cmd.Cmd):
     def default(self, line):
         '''default method overriden'''
         s = line.split('.')
-        if s[0] not in classes:
+        if s[0] not in classes or len(s) >= 3:
             print("*** unkown syntax: {}". format(s[0]))
             return
         if s[1] == 'all()':
@@ -208,6 +208,14 @@ class HBNBCommand(cmd.Cmd):
                 if cls[0] == s[0]:
                     aux.append(values.__str__())
             print(aux)
+            return
+        if s[1] == 'count()':
+            count = 0
+            for key in models.storage.all():
+                cls = key.split('.')
+                if cls[0] == s[0]:
+                    count += 1
+            print(count)
             return
 
     ''' Empty line '''
