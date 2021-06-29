@@ -12,6 +12,7 @@ classes = {"BaseModel": BaseModel}
 
 ''' global function to validate objects ids '''
 
+
 def id_validator(id):
     ''' takes id (string) and checks for it in __objects '''
     arr = []
@@ -56,7 +57,7 @@ class HBNBCommand(cmd.Cmd):
 
     ''' Show '''
     def do_show(self, line):
-        ''' Prints the string representation of an instance based on the class name and id '''
+        ''' string representation of instance based on the class name & id'''
         s = split(line)
         if len(s) == 0:
             print("** class name missing **")
@@ -99,7 +100,7 @@ class HBNBCommand(cmd.Cmd):
     ''' show all objects '''
 
     def do_all(self, line):
-        ''' Prints all string representation of all instances based or not on the class name '''
+        ''' string representation of all instances based or not on the class'''
         s = split(line)
         aux = []
         if len(s) == 0:
@@ -117,7 +118,7 @@ class HBNBCommand(cmd.Cmd):
 
     ''' Update '''
     def do_update(self, line):
-        ''' Updates an instance based on the class name and id by adding or updating attribute '''
+        ''' Updates instance based on class name & id by adding or upd att'''
         s = split(line)
 
         if len(s) == 0:
@@ -132,7 +133,7 @@ class HBNBCommand(cmd.Cmd):
         if len(s) == 2:
             if s[0] in classes and id_validator(s[1]):
                 print("** attribute name missing **")
-            elif s[0] in classes and id_validator(s[1]) == False:
+            elif s[0] in classes and id_validator(s[1]) is False:
                 print("** no instance found **")
             elif s[0] not in classes:
                 print("** class doesn't exist **")
@@ -140,7 +141,7 @@ class HBNBCommand(cmd.Cmd):
         if len(s) == 3:
             if s[0] in classes and id_validator(s[1]):
                 print("** value missing **")
-            elif s[0] in classes and id_validator(s[1]) == False:
+            elif s[0] in classes and id_validator(s[1]) is False:
                 print("** no instance found **")
             elif s[0] not in classes:
                 print("** class doesn't exist **")
@@ -149,7 +150,7 @@ class HBNBCommand(cmd.Cmd):
             if s[0] not in classes:
                 print("** class doesn't exist **")
                 return
-            elif s[0] in classes and id_validator(s[1]) == False:
+            elif s[0] in classes and id_validator(s[1]) is False:
                 print("** no instance found **")
                 return
             elif s[0] in classes and id_validator(s[1]):
