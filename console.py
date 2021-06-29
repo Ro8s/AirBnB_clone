@@ -16,7 +16,7 @@ class HBNBCommand(cmd.Cmd):
     prompt = '(hbnb) '
 
     ''' quit xd '''
-    
+
     def do_quit(self, line):
         ''' exit console '''
         return True
@@ -53,7 +53,7 @@ class HBNBCommand(cmd.Cmd):
             else:
                 print("** class doesn't exist **")
         else:
-            if s[0] not in classes: 
+            if s[0] not in classes:
                 print("** class doesn't exist **")
             else:
                 aux = s[0] + '.' + s[1]
@@ -145,19 +145,7 @@ class HBNBCommand(cmd.Cmd):
             else:
                 aux = s[0] + "." + s[1]
                 setattr(models.storage.all()[aux], s[2], s[3])
-
-        '''
-        if len(s) == 0:
-            print("** class name missing **")
-        elif s[0] not in classes:
-            print("** class doesn't exist **")
-        elif len(s) == 1:
-            print("** instance id missing **")
-        elif len(s) == 2 and s[2]:
-            for key in models.storage.all():
-                temp = key.split(".")
-                if temp[1]
-        '''
+                models.storage.save()
 
     ''' Empty line '''
 
