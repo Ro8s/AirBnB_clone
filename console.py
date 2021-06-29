@@ -209,7 +209,14 @@ class HBNBCommand(cmd.Cmd):
                     aux.append(values.__str__())
             print(aux)
             return
-        
+        if s[1] == 'count()':
+            count = 0
+            for key in models.storage.all():
+                cls = key.split('.')
+                if cls[0] == s[0]:
+                    count += 1
+            print(count)
+            return
 
     ''' Empty line '''
 
