@@ -10,6 +10,19 @@ from shlex import split
 classes = {"BaseModel": BaseModel}
 
 
+''' global function to validate objects ids '''
+
+def id_validator(id):
+    ''' takes id (string) and checks for it in __objects '''
+    arr = []
+    for key in models.storage.all():
+        aux = key.split('.')
+        arr.append(aux[1])
+    if id in arr:
+        return True
+    return False
+
+
 class HBNBCommand(cmd.Cmd):
     ''' El console '''
 
@@ -106,43 +119,40 @@ class HBNBCommand(cmd.Cmd):
     def do_update(self, line):
         ''' Updates an instance based on the class name and id by adding or updating attribute '''
         s = split(line)
+
         if len(s) == 0:
             print("** class name missing **")
             return
-        elif len(s) == 1:
+        if len(s) == 1:
             if s[0] not in classes:
                 print("** class doesn't exist **")
-                return
             else:
                 print("** instance id missing **")
-                return
-        bol = False
-        for key in models.storage.all():
-            temp = key.split('.')
-            if temp[1] == s[1]:
-                bol = True
-                break
-        if bol == False:
-            print("** no instance found **")
             return
-        elif len(s) < 3:
-            print("** attribute name missing **")
-        elif len(s) < 4:
-            print("** value missing **")            
-        else:
+        if len(s) == 2:
+            if s[0] in classes and id_validator(s[1]):
+                print("** attribute name missing **")
+            elif s[0] in classes and id_validator(s[1]) == False:
+                print("** no instance found **")
+            elif s[0] not in classes:
+                print("** class doesn't exist **")
+            return
+        if len(s) == 3:
+            if s[0] in classes and id_validator(s[1]):
+                print("** value missing **")
+            elif s[0] in classes and id_validator(s[1]) == False:
+                print("** no instance found **")
+            elif s[0] not in classes:
+                print("** class doesn't exist **")
+            return
+        if len(s) >= 4:
             if s[0] not in classes:
                 print("** class doesn't exist **")
                 return
-            bul = False
-            for key in models.storage.all():
-                temp = key.split('.')
-                if temp[1] == s[1]:
-                    bol = True
-                    break
-            if bol == False:
+            elif s[0] in classes and id_validator(s[1]) == False:
                 print("** no instance found **")
                 return
-            else:
+            elif s[0] in classes and id_validator(s[1]):
                 aux = s[0] + "." + s[1]
                 setattr(models.storage.all()[aux], s[2], s[3])
                 models.storage.save()
