@@ -17,6 +17,7 @@ class TestBaseModel(unittest.TestCase):
         self.assertEqual(datetime, type(b1.created_at))
         self.assertEqual(datetime, type(b1.updated_at))
         self.assertEqual(dict, type(b1.to_dict()))
+        self.assertEqual(str, type(b1.id))
 
     ''' Test for BaseModel '''
 
@@ -27,6 +28,6 @@ class TestBaseModel(unittest.TestCase):
         self.assertNotEqual(b1.id, b2.id)
         self.assertNotEqual(b1.created_at, b2.created_at)
         self.assertNotEqual(b1.created_at, b2.created_at)
-
+        
 if __name__ == '__main__':
     unittest.main()
