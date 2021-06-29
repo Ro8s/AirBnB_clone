@@ -18,6 +18,12 @@ class TestBaseModel(unittest.TestCase):
         self.assertEqual(datetime, type(b1.updated_at))
         self.assertEqual(dict, type(b1.to_dict()))
         self.assertEqual(str, type(b1.id))
+        prin = "[{}] ({}) {}".format(
+            b1.__class__.__name__,
+            b1.id,
+            b1.__dict__
+        )
+        self.assertEqual(prin, str(b1))
 
     ''' Test for BaseModel '''
 
