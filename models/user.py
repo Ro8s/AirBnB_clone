@@ -4,6 +4,7 @@
 from models.base_model import BaseModel
 import models
 
+
 class User(BaseModel):
     ''' Class User that inherits from BaseModel '''
 
@@ -11,4 +12,3 @@ class User(BaseModel):
     password = ""
     first_name = ""
     last_name = ""
-
