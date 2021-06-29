@@ -193,6 +193,23 @@ class HBNBCommand(cmd.Cmd):
                 setattr(models.storage.all()[aux], s[2], cpy)
                 models.storage.save()
 
+    ''' Advanced tasks baby shark '''
+
+    def default(self, line):
+        '''default method overriden'''
+        s = line.split('.')
+        if s[0] not in classes:
+            print("*** unkown syntax: {}". format(s[0]))
+            return
+        if s[1] == 'all()':
+            aux = []
+            for key, values in models.storage.all().items():
+                cls = key.split('.')
+                if cls[0] == s[0]:
+                    aux.append(values.__str__())
+            print(aux)
+            return
+
     ''' Empty line '''
 
     def emptyline(self):
