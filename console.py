@@ -13,7 +13,8 @@ from models.place import Place
 from models.review import Review
 
 
-classes = {"BaseModel": BaseModel, "User": User, "State": State, "City": City, "Amenity": Amenity, "Place": Place, "Review": Review}
+classes = {"BaseModel": BaseModel, "User": User, "State": State, "City": City,
+           "Amenity": Amenity, "Place": Place, "Review": Review}
 
 
 ''' global function to validate objects ids '''
@@ -217,6 +218,7 @@ class HBNBCommand(cmd.Cmd):
                     count += 1
             print(count)
             return
+        if s[1] == 
 
     ''' Empty line '''
 
