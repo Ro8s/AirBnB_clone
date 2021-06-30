@@ -17,7 +17,7 @@ class TestFileStorage(unittest.TestCase):
         f1 = FileStorage()
         di = {}
         b1.save()
-        self.assertNotEqual(di, models.storage.all())        
+        self.assertNotEqual(di, models.storage.all())
         self.assertEqual(str, type(f1._FileStorage__file_path))
         self.assertEqual(dict, type(f1._FileStorage__objects))
 

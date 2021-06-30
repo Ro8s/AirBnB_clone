@@ -14,6 +14,8 @@ class TestBaseModel(unittest.TestCase):
         '''  Test for BaseModel '''
         b1 = BaseModel()
         up = b1.updated_at
+        b.name = "Hi"
+        self.assertEqual(b.name, "Hi")
         self.assertIn(b1, models.storage.all().values())
         self.assertEqual(datetime, type(b1.created_at))
         self.assertEqual(datetime, type(b1.updated_at))
@@ -27,11 +29,6 @@ class TestBaseModel(unittest.TestCase):
         self.assertEqual(prin, str(b1))
         b1.save()
         self.assertNotEqual(up, b1.updated_at)
-        now = datetime.now()
-        nowi = now.isoformat()
-        b1.created_at = nowi
-        b1.updated_at = nowi
-        
 
     ''' Test for BaseModel Ex 3'''
 
@@ -42,17 +39,6 @@ class TestBaseModel(unittest.TestCase):
         self.assertNotEqual(b1.id, b2.id)
         self.assertNotEqual(b1.created_at, b2.created_at)
         self.assertNotEqual(b1.updated_at, b2.updated_at)
-
-    ''' Test for BaseModel for Ex. 4 and 5 '''
-
-    def test_basemodelkwargs(self):
-        ''' Test for the class with/out kwargs '''
-        b1 = BaseTime()
-        now = datetime.now()
-        nowi = now.isoformat()
-        b1.created_at = nowi
-        b1.updated_at = nowi
-
 
 if __name__ == '__main__':
     unittest.main()
