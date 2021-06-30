@@ -246,6 +246,14 @@ class HBNBCommand(cmd.Cmd):
             else:
                 print("** no instance found **")
             return
+        if s[1][0:7] == 'update(' and s[1][-1] == ')':
+            if s[1][-2] == '}': #Caso id, {diccionario}
+                's[1] = update("234", {"name": "kiko", "age": 20})'
+                t = s[1].split('"', 2)
+                dic = eval(t[2][2:-1])
+                for key, values in dic.items():
+                    parse = s[0] + " " + t[1] + " " + str(key) + " " + str(values)
+                    self.do_update(parse)
 
     ''' Empty line '''
 
