@@ -27,8 +27,11 @@ class TestBaseModel(unittest.TestCase):
         self.assertEqual(prin, str(b1))
         b1.save()
         self.assertNotEqual(up, b1.updated_at)
-        b = str(b1.created_at)
-        self.assertNotIn("T", b)
+        now = datetime.now()
+        nowi = now.isoformat()
+        b1.created_at = nowi
+        b1.updated_at = nowi
+        
 
     ''' Test for BaseModel Ex 3'''
 
@@ -40,11 +43,16 @@ class TestBaseModel(unittest.TestCase):
         self.assertNotEqual(b1.created_at, b2.created_at)
         self.assertNotEqual(b1.updated_at, b2.updated_at)
 
-    ''' Test for BaseModel Ex 4 '''
+    ''' Test for BaseModel for Ex. 4 and 5 '''
 
     def test_basemodelkwargs(self):
         ''' Test for the class with/out kwargs '''
-        
+        b1 = BaseTime()
+        now = datetime.now()
+        nowi = now.isoformat()
+        b1.created_at = nowi
+        b1.updated_at = nowi
+
 
 if __name__ == '__main__':
     unittest.main()
