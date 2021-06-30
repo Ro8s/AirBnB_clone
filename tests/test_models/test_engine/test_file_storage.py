@@ -25,7 +25,7 @@ class TestFileStorage(unittest.TestCase):
         f = path.exists('file.json')
         self.assertTrue(f)
 
-    def test_pep8_conf(self):
+    def test_pep8_conformance(self):
         ''' Test for pep8 '''
         pep8s = pep8.StyleGuide(quiet=True)
         result = pep8s.check_files(['models/engine/file_storage.py'])
