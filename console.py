@@ -125,6 +125,7 @@ class HBNBCommand(cmd.Cmd):
                 aux = s[0] + '.' + s[1]
                 if str(aux) in models.storage.all():
                     models.storage.all().pop(aux)
+                    models.storage.save()
                 else:
                     print("** no instance found **")
 
@@ -197,9 +198,9 @@ class HBNBCommand(cmd.Cmd):
     ''' Advanced tasks baby shark '''
 
     def default(self, line):
-        '''default method overriden'''
+        '''default method overriden '''
         s = line.split('.')
-        if s[0] not in classes or len(s) >= 3:
+        if s[0] not in classes or len(s) != 2:
             print("*** unkown syntax: {}". format(s[0]))
             return
         if s[1] == 'all()':
@@ -218,7 +219,46 @@ class HBNBCommand(cmd.Cmd):
                     count += 1
             print(count)
             return
-        if s[1] == 
+        if s[1][0:5] == "show(" and s[1][-1] == ')':
+            new = s[1].split('(')
+            obj_id = new[1][:-2]
+            obj_id = obj_id[1:]
+            if id_validator(obj_id):
+                obj_key = s[0] + '.' + obj_id
+                if obj_key in models.storage.all():
+                    print(models.storage.all()[obj_key])
+                else:
+                    print("** no instance found **")
+            else:
+                print("** no instance found **")
+            return
+        if s[1][0:8] == "destroy(" and s[1][-1] == ')':
+            des = s[1].split('(')
+            des_id = des[1][:-2]
+            des_id = des_id[1:]
+            if id_validator(des_id):
+                des_key = s[0] + '.' + des_id
+                if des_key in models.storage.all():
+                    models.storage.all().pop(des_key)
+                    models.storage.save()
+                else:
+                    print("** no instance found **")
+            else:
+                print("** no instance found **")
+            return
+        if s[1][0:7] == 'update(' and s[1][-1] == ')':
+            if s[1][-2] == '}':  # Caso id, {diccionario} (ej 16)
+                t = s[1].split('"', 2)
+                dic = eval(t[2][2:-1])
+                for key, values in dic.items():
+                    parse = s[0] + " " + t[1] + " " + key + " " + str(values)
+                    self.do_update(parse)
+                return
+            else:  # Corte ejercicio 15 sacas
+                h = s[1].split('"')
+                linea = s[0] + " " + h[1] + " " + str(h[3]) + " " + str(h[5])
+                self.do_update(linea)
+                return
 
     ''' Empty line '''
 
