@@ -231,6 +231,19 @@ class HBNBCommand(cmd.Cmd):
             else:
                 print("** no instance found **")
             return
+        if s[1][0:8] == "destroy(" and s[1][-1] == ')':
+            des = s[1].split('(')
+            des_id = des[1][:-2]
+            des_id = des_id[1:]
+            if id_validator(des_id):
+                des_key = s[0] + '.' + des_id
+                if des_key in models.storage.all():
+                    models.storage.all().pop(des_key)
+                else:
+                    print("** no instance found **")
+            else:
+                print("** no instance found **")
+            return
 
     ''' Empty line '''
 
