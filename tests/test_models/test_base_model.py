@@ -14,8 +14,8 @@ class TestBaseModel(unittest.TestCase):
         '''  Test for BaseModel '''
         b1 = BaseModel()
         up = b1.updated_at
-        b.name = "Hi"
-        self.assertEqual(b.name, "Hi")
+        b1.name = "Hi"
+        self.assertEqual(b1.name, "Hi")
         self.assertIn(b1, models.storage.all().values())
         self.assertEqual(datetime, type(b1.created_at))
         self.assertEqual(datetime, type(b1.updated_at))
