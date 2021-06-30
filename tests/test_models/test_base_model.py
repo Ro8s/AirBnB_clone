@@ -27,6 +27,8 @@ class TestBaseModel(unittest.TestCase):
         self.assertEqual(prin, str(b1))
         b1.save()
         self.assertNotEqual(up, b1.updated_at)
+        b = str(b1.created_at)
+        self.assertNotIn("T", b)
 
     ''' Test for BaseModel Ex 3'''
 
