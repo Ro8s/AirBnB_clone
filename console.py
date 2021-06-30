@@ -197,9 +197,9 @@ class HBNBCommand(cmd.Cmd):
     ''' Advanced tasks baby shark '''
 
     def default(self, line):
-        '''default method overriden'''
+        '''default method overriden '''
         s = line.split('.')
-        if s[0] not in classes or len(s) >= 3:
+        if s[0] not in classes or len(s) != 2:
             print("*** unkown syntax: {}". format(s[0]))
             return
         if s[1] == 'all()':
