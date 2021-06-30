@@ -125,6 +125,7 @@ class HBNBCommand(cmd.Cmd):
                 aux = s[0] + '.' + s[1]
                 if str(aux) in models.storage.all():
                     models.storage.all().pop(aux)
+                    models.storage.save()
                 else:
                     print("** no instance found **")
 
@@ -239,6 +240,7 @@ class HBNBCommand(cmd.Cmd):
                 des_key = s[0] + '.' + des_id
                 if des_key in models.storage.all():
                     models.storage.all().pop(des_key)
+                    models.storage.save()
                 else:
                     print("** no instance found **")
             else:
