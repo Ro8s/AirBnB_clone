@@ -218,7 +218,19 @@ class HBNBCommand(cmd.Cmd):
                     count += 1
             print(count)
             return
-        if s[1] == 
+        if s[1][0:5] == "show(" and s[1][-1] == ')':
+            new = s[1].split('(')
+            obj_id = new[1][:-2]
+            obj_id = obj_id[1:]
+            if id_validator(obj_id):
+                obj_key = s[0] + '.' + obj_id
+                if obj_key in models.storage.all():
+                    print(models.storage.all()[obj_key])
+                else:
+                    print("** no instance found **")
+            else:
+                print("** no instance found **")
+            return
 
     ''' Empty line '''
 
