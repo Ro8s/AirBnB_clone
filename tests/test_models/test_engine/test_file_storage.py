@@ -6,7 +6,7 @@ import unittest
 from models.base_model import BaseModel
 from models.engine.file_storage import FileStorage
 from datetime import datetime
-
+import pep8
 
 class TestFileStorage(unittest.TestCase):
     ''' Test for Storage Ex 5'''
@@ -21,5 +21,11 @@ class TestFileStorage(unittest.TestCase):
         self.assertEqual(str, type(f1._FileStorage__file_path))
         self.assertEqual(dict, type(f1._FileStorage__objects))
 
+    def test_pep8_conformance(self):
+        ''' Test for pep8 '''
+        pep8s = pep8.StyleGuide(quiet=True)
+        result = pep8s.check_files(['models/engine/file_storage.py'])
+        self.assertEqual(result.total_errors, 0,
+                         "Found code style errors (and warnings).")
 if __name__ == '__main__':
     unittest.main()
