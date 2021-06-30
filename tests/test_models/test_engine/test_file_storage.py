@@ -7,6 +7,8 @@ from models.base_model import BaseModel
 from models.engine.file_storage import FileStorage
 from datetime import datetime
 import pep8
+from os import path
+
 
 class TestFileStorage(unittest.TestCase):
     ''' Test for Storage Ex 5'''
@@ -20,7 +22,9 @@ class TestFileStorage(unittest.TestCase):
         self.assertNotEqual(di, models.storage.all())
         self.assertEqual(str, type(f1._FileStorage__file_path))
         self.assertEqual(dict, type(f1._FileStorage__objects))
-
+        f = path.exists('file.json')
+        self.assertTrue(f)
+    
     def test_pep8_conformance(self):
         ''' Test for pep8 '''
         pep8s = pep8.StyleGuide(quiet=True)
