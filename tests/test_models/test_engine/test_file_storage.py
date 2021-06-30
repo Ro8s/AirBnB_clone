@@ -24,12 +24,16 @@ class TestFileStorage(unittest.TestCase):
         self.assertEqual(dict, type(f1._FileStorage__objects))
         f = path.exists('file.json')
         self.assertTrue(f)
-    
-    def test_pep8_conformance(self):
+        b2 = BaseModel("a")
+        b2.save()
+        self.assertNotEqual(di, models.storage.all())
+
+    def test_pep8_conf(self):
         ''' Test for pep8 '''
         pep8s = pep8.StyleGuide(quiet=True)
         result = pep8s.check_files(['models/engine/file_storage.py'])
         self.assertEqual(result.total_errors, 0,
                          "Found code style errors (and warnings).")
+
 if __name__ == '__main__':
     unittest.main()
