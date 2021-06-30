@@ -247,14 +247,14 @@ class HBNBCommand(cmd.Cmd):
                 print("** no instance found **")
             return
         if s[1][0:7] == 'update(' and s[1][-1] == ')':
-            if s[1][-2] == '}': #Caso id, {diccionario} (ej 16)
+            if s[1][-2] == '}':  # Caso id, {diccionario} (ej 16)
                 t = s[1].split('"', 2)
                 dic = eval(t[2][2:-1])
                 for key, values in dic.items():
-                    parse = s[0] + " " + t[1] + " " + str(key) + " " + str(values)
+                    parse = s[0] + " " + t[1] + " " + key + " " + str(values)
                     self.do_update(parse)
                 return
-            else: #Corte ejercicio 15 sacas
+            else:  # Corte ejercicio 15 sacas
                 h = s[1].split('"')
                 linea = s[0] + " " + h[1] + " " + str(h[3]) + " " + str(h[5])
                 self.do_update(linea)
