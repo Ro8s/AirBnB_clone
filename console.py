@@ -78,7 +78,7 @@ class HBNBCommand(cmd.Cmd):
         '''  Creates a new instance of BaseModel '''
         s = split(line)
         if len(s) < 1:
-            print("** class name missing **")
+            print("** class name issing **")
         elif s[0] not in classes:
             print("** class doesn't exist **")
         else:
