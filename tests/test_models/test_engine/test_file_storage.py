@@ -27,11 +27,8 @@ class TestFileStorage(unittest.TestCase):
         b2 = BaseModel("a")
         b2.save()
         self.assertNotEqual(b2, models.storage.all())
-        Storage = FileStorage()
-        Storage.reload()
-        self.assertTrue(hasattr(FileStorage, "_FileStorage__file_path"))
-        self.assertTrue(hasattr(FileStorage, "_FileStorage__objects"))
-
+        my_model = FileStorage()
+        self.assertIsInstance(my_model, FileStorage)
 
     ''' Test pep8 '''
 
