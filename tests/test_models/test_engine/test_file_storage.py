@@ -27,8 +27,6 @@ class TestFileStorage(unittest.TestCase):
         b2 = BaseModel("a")
         b2.save()
         self.assertNotEqual(b2, models.storage.all())
-        b2 = BaseModel("a")
-        self.assertNotEqual(b2, models.storage.all())
 
     ''' Test pep8 '''
 
