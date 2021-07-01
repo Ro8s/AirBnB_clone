@@ -29,9 +29,7 @@ class TestBaseModel(unittest.TestCase):
         self.assertEqual(prin, str(b1))
         b1.save()
         self.assertNotEqual(up, b1.updated_at)
-        b2 = BaseModel("a")
-        b2.save()
-        self.assertNotEqual(b2, models.storage.all())
+
 
     ''' Test for BaseModel Ex 3'''
 
