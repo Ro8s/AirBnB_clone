@@ -27,7 +27,11 @@ class TestFileStorage(unittest.TestCase):
         b2 = BaseModel("a")
         b2.save()
         self.assertNotEqual(b2, models.storage.all())
-    
+        b2 = BaseModel("a")
+        self.assertNotEqual(b2, models.storage.all())
+
+    ''' Test pep8 '''
+
     def test_pep8_conformance(self):
         ''' Test for pep8 '''
         pep8s = pep8.StyleGuide(quiet=True)
