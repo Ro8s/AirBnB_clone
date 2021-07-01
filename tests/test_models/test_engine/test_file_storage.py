@@ -24,6 +24,9 @@ class TestFileStorage(unittest.TestCase):
         self.assertEqual(dict, type(f1._FileStorage__objects))
         f = path.exists('file.json')
         self.assertTrue(f)
+        b2 = BaseModel("a")
+        b2.save()
+        self.assertNotEqual(b2, models.storage.all())
     
     def test_pep8_conformance(self):
         ''' Test for pep8 '''
