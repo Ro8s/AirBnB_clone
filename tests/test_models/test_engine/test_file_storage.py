@@ -27,6 +27,11 @@ class TestFileStorage(unittest.TestCase):
         b2 = BaseModel("a")
         b2.save()
         self.assertNotEqual(b2, models.storage.all())
+        Storage = FileStorage()
+        Storage.reload()
+        self.assertTrue(hasattr(FileStorage, "_FileStorage__file_path"))
+        self.assertTrue(hasattr(FileStorage, "_FileStorage__objects"))
+
 
     ''' Test pep8 '''
 
@@ -36,5 +41,6 @@ class TestFileStorage(unittest.TestCase):
         result = pep8s.check_files(['models/engine/file_storage.py'])
         self.assertEqual(result.total_errors, 0,
                          "Found code style errors (and warnings).")
+
 if __name__ == '__main__':
     unittest.main()
