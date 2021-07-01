@@ -15,6 +15,7 @@ class TestBaseModel(unittest.TestCase):
         b1 = BaseModel()
         up = b1.updated_at
         b1.name = "Hi"
+        b1.save()
         self.assertEqual(b1.name, "Hi")
         self.assertIn(b1, models.storage.all().values())
         self.assertEqual(datetime, type(b1.created_at))
@@ -32,6 +33,10 @@ class TestBaseModel(unittest.TestCase):
         b2 = BaseModel()
         b2.save()
         self.assertNotEqual(b2, models.storage.all())
+        b2.name = "Aaa"
+        dic = b2.to_dict()
+        self.assertEqual('name' in dic, True)
+        self.assertEqual(type(str(b1)), str)
 
     ''' Test for BaseModel Ex 3'''
 
