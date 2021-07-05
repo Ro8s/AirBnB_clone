@@ -1,7 +1,7 @@
 # AirBnB_clone
-![](https://holbertonintranet.s3.amazonaws.com/uploads/medias/2018/6/65f4a1dd9c51265f49d0.png?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=AKIARDDGGGOUWMNL5ANN%2F20210629%2Fus-east-1%2Fs3%2Faws4_request&X-Amz-Date=20210629T131645Z&X-Amz-Expires=86400&X-Amz-SignedHeaders=host&X-Amz-Signature=62fa772ad707daa82afb444bee4d67e105bf77be99a11cd3babeb5d8dcac2091)
+![](https://holbertonintranet.s3.amazonaws.com/uploads/medias/2018/6/65f4a1dd9c51265f49d0.png?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=AKIARDDGGGOUWMNL5ANN%2F20210705%2Fus-east-1%2Fs3%2Faws4_request&X-Amz-Date=20210705T204434Z&X-Amz-Expires=86400&X-Amz-SignedHeaders=host&X-Amz-Signature=a6c1b47527990ad51d7ae5ac31c5c4ab8340957e745ed742bb1093eebb0018e9)
 ### Welcome to the AirBnB clone project! (The Holberton B&B)
-### By Francisco Calixto & Rodrigo Delgado Rodolfus
+### By Francisco Calixto & Rodrigo Delgado
 
 #### First step: Write a command interpreter to manage your AirBnB objects.
 
@@ -17,7 +17,7 @@ Each task is linked and will help you to:
 
 ### What’s a command interpreter?
 
-Do you remember the Shell? It’s exactly the same but limited to a specific use-case. In our case, we want to be able to manage the objects of the project:
+It’s just like the shell, exactly the same but limited to a specific use-case. In our case, we want to be able to manage the objects of the project:
 
 -   Create a new object (ex: a new User or a new Place)
 -   Retrieve an object from a file, a database etc…
@@ -25,11 +25,11 @@ Do you remember the Shell? It’s exactly the same but limited to a specific use
 -   Update attributes of an object
 -   Destroy an object
 
-## More Info
+## How to use the console:
 
-### Execution
+### Execution examples:
 
-Your shell should work like this in interactive mode:
+#### Interactive mode:
 
 ```
 $ ./console.py
@@ -45,7 +45,7 @@ EOF  help  quit
 $
 ```
 
-But also in non-interactive mode: (like the Shell project in C)
+#### Non-interactive mode:
 
 ```
 $ echo "help" | ./console.py
@@ -68,4 +68,55 @@ EOF  help  quit
 (hbnb) 
 $
 ```
+### Built-in commands:
+We have created built-in commands that can be used to modify different objects. These objects can belong to each of the following classes: BaseModel (father class), User, City, Amenity, Review, Place, State. All all of the last classes inherit from BaseModel.
 
+#### The list of these built-in commands is:
+
+ - create - `create <class name>` - Create class instance
+ - destroy - `destroy <class name> <obj id>` - Destroy instance
+ - update - `update <class name> <object id> <attribute name> "<attribute value>"` - Update or set given attribute
+ - show - `show <class name> <obj id>` - show string representation of object
+ - all - `all` or `all <class name>`- Prints all string representation of all instances based or not on the class name
+
+#### Examples:
+```
+(hbnb) create User
+29b75053-2282-47b0-aea4-fcc8558002f6
+(hbnb) show User 29b75053-2282-47b0-aea4-fcc8558002f6
+[User] (29b75053-2282-47b0-aea4-fcc8558002f6) {'created_at': datetime.datetime(2021, 7, 5, 21, 6, 42, 707721), 'updated_at': datetime.datetime(2021, 7, 5, 21, 6, 42, 707745), 'id': '29b75053-2282-47b0-aea4-fcc8558002f6'}
+(hbnb) all
+["[User] (29b75053-2282-47b0-aea4-fcc8558002f6) {'created_at': datetime.datetime(2021, 7, 5, 21, 6, 42, 707721), 'updated_at': datetime.datetime(2021, 7, 5, 21, 6, 42, 707745), 'id': '29b75053-2282-47b0-aea4-fcc8558002f6'}"]
+(hbnb) update User 29b75053-2282-47b0-aea4-fcc8558002f6 first_name "Francisco"
+(hbnb) all User
+["[User] (29b75053-2282-47b0-aea4-fcc8558002f6) {'first_name': 'Francisco', 'updated_at': datetime.datetime(2021, 7, 5, 21, 6, 42, 707745), 'created_at': datetime.datetime(2021, 7, 5, 21, 6, 42, 707721), 'id': '29b75053-2282-47b0-aea4-fcc8558002f6'}"]
+(hbnb) destroy User 29b75053-2282-47b0-aea4-fcc8558002f6
+(hbnb) all
+[]
+(hbnb) 
+```
+### Exiting the console:
+
+ - quit:
+```
+(hbnb) destroy User 29b75053-2282-47b0-aea4-fcc8558002f6
+(hbnb) all
+[]
+(hbnb) quit
+root@841fb2799066:/AirBnB_clone#
+```
+ - EOF:
+ ```
+(hbnb) destroy User 29b75053-2282-47b0-aea4-fcc8558002f6
+(hbnb) all
+[]
+(hbnb) EOF
+root@841fb2799066:/AirBnB_clone#
+ ```
+
+## Important info:
+
+
+`models/__init__.py`: creates a unique `FileStorage` instance for the program, this instance 'storage' is used until the program is killed.
+
+By default, the .json file which is created to store the representation of all objects is called "file.json". This string is set in the `__file_path` private class attribute in `model/engine/file_strorage.py`.
