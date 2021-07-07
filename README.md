@@ -1,5 +1,6 @@
 # AirBnB_clone
-![](https://holbertonintranet.s3.amazonaws.com/uploads/medias/2018/6/65f4a1dd9c51265f49d0.png?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=AKIARDDGGGOUWMNL5ANN%2F20210705%2Fus-east-1%2Fs3%2Faws4_request&X-Amz-Date=20210705T204434Z&X-Amz-Expires=86400&X-Amz-SignedHeaders=host&X-Amz-Signature=a6c1b47527990ad51d7ae5ac31c5c4ab8340957e745ed742bb1093eebb0018e9)
+<img src="https://i.imgur.com/6JaLQ4z.png" align="center">
+
 ### Welcome to the AirBnB clone project! (The Holberton B&B)
 ### By Francisco Calixto & Rodrigo Delgado
 
