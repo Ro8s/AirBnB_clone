@@ -75,7 +75,9 @@ class HBNBCommand(cmd.Cmd):
     ''' Create '''
 
     def do_create(self, line):
-        '''  Creates a new instance of BaseModel '''
+        '''  Creates a new instance of a class
+             create <class name>         
+        '''
         s = split(line)
         if len(s) < 1:
             print("** class name missing **")
@@ -88,7 +90,9 @@ class HBNBCommand(cmd.Cmd):
 
     ''' Show '''
     def do_show(self, line):
-        ''' string representation of instance based on the class name & id'''
+        ''' string representation of instance based on the class name & id
+            show <class name> <id>
+        '''
         s = split(line)
         if len(s) == 0:
             print("** class name missing **")
@@ -109,7 +113,9 @@ class HBNBCommand(cmd.Cmd):
 
     ''' destroy '''
     def do_destroy(self, line):
-        '''' Deletes an instance based on the class name and id '''
+        '''' Deletes an instance based on the class name and id 
+             destroy <class name> <id>
+        '''
         s = split(line)
         if len(s) == 0:
             print("** class name missing **")
@@ -132,7 +138,9 @@ class HBNBCommand(cmd.Cmd):
     ''' show all objects '''
 
     def do_all(self, line):
-        ''' string representation of all instances based or not on the class'''
+        ''' string representation of all instances based or not on the class
+            all <class name> or all
+        '''
         s = split(line)
         aux = []
         if len(s) == 0:
@@ -150,7 +158,9 @@ class HBNBCommand(cmd.Cmd):
 
     ''' Update '''
     def do_update(self, line):
-        ''' Updates instance based on class name & id by adding or upd att'''
+        ''' Updates instance based on class name & id by adding or upd att
+            update <class name> <id> <attribute name> <attribute value>
+        '''
         s = split(line)
 
         if len(s) == 0:
