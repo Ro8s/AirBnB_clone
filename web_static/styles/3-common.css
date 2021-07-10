@@ -1,0 +1,13 @@
+body {
+    display: flex;
+    min-height: 100vh;
+    margin: 0px;
+    padding: 0px;
+    flex-direction: column;
+    font-family: Circular,"Helvetica Neue",Helvetica,Arial,sans-serif;
+    font-size: 14px;
+    color: #484848;
+}
+main {
+    flex: 1;
+}
