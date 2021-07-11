@@ -62,7 +62,7 @@ h4 {
 .amenities:hover .popover {
     visibility: visible;
 }
-h2 {
+.popover h2 {
     font-size: 16px;
     margin-left: 30px;
 }
